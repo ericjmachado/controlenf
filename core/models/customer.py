@@ -16,3 +16,7 @@ class Customer(ControlModel):
     commercial_name = models.CharField(max_length=255)
     legal_name = models.CharField(max_length=255)
     company = models.ForeignKey("Company", on_delete=models.CASCADE, blank=True)
+
+    @property
+    def name(self):
+        return self.legal_name or self.commercial_name

@@ -1,2 +1,2 @@
-from .view import ManageDataMixin
+from .view import ManageDataMixin, CompanyContextView
 from .model import ControlModel

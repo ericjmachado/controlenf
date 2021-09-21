@@ -6,7 +6,7 @@ from helpers.validators import CNPJValidator
 
 
 class Company(ControlModel):
-    owner = models.ForeignKey("User", on_delete=models.CASCADE, blank=True)
+    owner = models.ForeignKey("User", on_delete=models.CASCADE, blank=True, related_name="companies")
     cnpj = models.CharField(
         max_length=14,
         blank=True,

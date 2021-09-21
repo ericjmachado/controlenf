@@ -1,5 +1,7 @@
 import json
 
+from rest_framework.generics import get_object_or_404
+
 
 class ManageDataMixin(object):
     def manage_data(self, request, *args, **kwargs):
@@ -17,3 +19,13 @@ class ManageDataMixin(object):
                 "utf-8"
             )
         return super(ManageDataMixin, self).dispatch(request, *args, **kwargs)
+
+
+class CompanyContextView(object):
+    lookup_company = "companies_pk"
+
+    def get_serializer_context(self):
+        from core import models
+        context = super(CompanyContextView, self).get_serializer_context()
+        context["company"] = get_object_or_404(models.Company, pk=self.kwargs.get("companies_pk"))
+        return context
